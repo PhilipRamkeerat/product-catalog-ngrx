@@ -1,50 +1,74 @@
 <section class="section">
   <div class="container">
-    <h1 class="title">Product List</h1>
+    <h1 class="title mb-4 has-text-primary has-text-centered">Product List with NgRX</h1>
 
-    <!-- Formulário para adicionar produto -->
     <div class="box">
-      <h2 class="subtitle">Add a New Product</h2>
-      <div class="field">
-        <label class="label">Product Name</label>
-        <div class="control">
-          <input
-            class="input"
-            #productName
-            type="text"
-            placeholder="Product name"
+      <h2 class="subtitle mb-4 has-text-primary">Add a New Product</h2>
+      <form
+        [formGroup]="productForm"
+        (ngSubmit)="addProduct()"
+      >
+        <div class="field">
+          <label class="label">Product Name</label>
+          <div class="control">
+            <input
+              class="input"
+              formControlName="name"
+              type="text"
+              placeholder="Product name"
+            />
+          </div>
+          <p
+            class="help is-danger"
+            *ngIf="
+              productForm.get('name')?.invalid &&
+              productForm.get('name')?.touched
+            "
           >
+            Product name is required.
+          </p>
         </div>
-      </div>
 
-      <div class="field">
-        <label class="label">Product Price</label>
-        <div class="control">
-          <input
-            class="input"
-            #productPrice
-            type="number"
-            placeholder="Product price"
+        <div class="field mt-2">
+          <label class="label">Product Price</label>
+          <div class="control">
+            <input
+              class="input"
+              formControlName="price"
+              type="number"
+              placeholder="Product price"
+            />
+          </div>
+          <p
+            class="help is-danger"
+            *ngIf="
+              productForm.get('price')?.invalid &&
+              productForm.get('price')?.touched
+            "
           >
+            Price must be greater than 0.
+          </p>
         </div>
-      </div>
 
-      <div class="control">
-        <button
-          class="button is-primary"
-          (click)="addProduct(productName.value, productPrice.value)"
-        >Add Product</button>
-      </div>
+        <div class="control mt-4">
+          <button
+            class="button is-primary"
+            type="submit"
+            [disabled]="productForm.invalid"
+          >
+            Add Product
+          </button>
+        </div>
+      </form>
     </div>
 
-    <!-- Listagem de Produtos -->
-    <div class="box">
-      <h2 class="subtitle">Products</h2>
+    <div class="box mt-2">
+      <h2 class="subtitle has-text-primary">Products</h2>
 
       <ul>
         <li
           *ngFor="let product of products$ | async"
-          class="is-flex is-justify-content-space-between is-align-items-center"
+          class="is-flex is-justify-content-space-between is-align-items-center mt-1"
         >
           <span>
             <strong>{{ product.name }}</strong> - ${{ product.price }}
@@ -52,7 +76,9 @@
           <button
             class="button is-danger is-small"
             (click)="removeProduct(product.id)"
-          >Remove</button>
+          >
+            Remove
+          </button>
         </li>
       </ul>
     </div>

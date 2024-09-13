@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms'; // Necessary imports for Reactive Forms
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Product } from '../products/models/product.model';
@@ -12,19 +13,36 @@ import { selectAllProducts } from '../products/store/selectors/products.selector
 })
 export class ProductsListComponent {
   products$: Observable<Product[]>;
-  constructor(private store: Store) {
-    // Using selector to get all products
+  productForm: FormGroup;
+
+  constructor(private store: Store, private fb: FormBuilder) {
+    // Using the selector to get all products
     this.products$ = this.store.select(selectAllProducts);
+
+    // Initialize the reactive form
+    this.productForm = this.fb.group({
+      name: ['', Validators.required],
+      price: [0, [Validators.required, Validators.min(1)]]
+    });
   }
 
-  // dispatching action to add product
-  addProduct(name: string, price: any) {
-    Number(price);
-    const product: Product = { id: Date.now(), name, price };
-    this.store.dispatch(addProduct({ product }));
+  // Method to add a product using Reactive Form
+  addProduct() {
+    if (this.productForm.valid) {
+      const product: Product = {
+        id: Date.now(),
+        name: this.productForm.value.name,
+        price: Number(this.productForm.value.price)
+      };
+
+      this.store.dispatch(addProduct({ product }));
+      this.productForm.reset();
+    } else {
+      console.log('Invalid Form');
+    }
   }
 
-  // Dispatching action to remove product
+  // Dispatch action to remove product
   removeProduct(id: number) {
     this.store.dispatch(removeProduct({ id }));
   }
