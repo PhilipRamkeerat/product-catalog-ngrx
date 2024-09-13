@@ -1,27 +1,51 @@
-# NgrxExercise
+# NgRX Product Catalog
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.8.
+This is a simple product catalog built using **Angular** and **NgRX** for state management. It demonstrates how to manage a list of products using NgRX, including adding, removing, and listing products. Additionally, it utilizes **Bulma CSS** for styling.
 
-## Development server
+## Features
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+- **NgRX Store** for state management
+- **NgRX Effects** for handling side effects
+- **NgRX DevTools** for debugging and visualizing state changes
+- **Reactive Forms** for adding and validating products
+- **Bulma CSS** for responsive and modern UI design
 
-## Code scaffolding
+## Getting Started
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### Prerequisites
 
-## Build
+To run this project locally, ensure you have the following installed:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- **Node.js** (v12 or later)
+- **Angular CLI** (v12 or later)
 
-## Running unit tests
+### Installation
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+1. Clone the repository:
 
-## Running end-to-end tests
+   ```bash
+   git clone https://github.com/PhilipRamkeerat/product-catalog-ngrx
+   ```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+2. Navigate to the project directory:
 
-## Further help
+   ```
+    cd product-catalog-ngrx
+   ```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+3. Navigate to the project directory:
+
+   ```
+    npm install
+   ```
+
+4. Running the Project:
+
+   ```
+    npm start
+   ```
+
+5. Running Tests:
+   ```
+    npm test
+   ```
