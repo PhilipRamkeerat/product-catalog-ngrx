@@ -18,7 +18,8 @@ export class ProductsListComponent {
   }
 
   // dispatching action to add product
-  addProduct(name: string, price: number) {
+  addProduct(name: string, price: any) {
+    Number(price);
     const product: Product = { id: Date.now(), name, price };
     this.store.dispatch(addProduct({ product }));
   }
