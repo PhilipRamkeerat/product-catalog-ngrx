@@ -4,17 +4,20 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from 'src/environments/environment';
 import { AppComponent } from './app.component';
+import { productReducer } from './products/store/reducers/products.reducer';
+import { ProductsListComponent } from './products-list/products-list.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ProductsListComponent
   ],
   imports: [
     BrowserModule,
-    StoreModule.forRoot({}, {}), // Inicializa o Store sem reducers por enquanto
+    StoreModule.forRoot({ products: productReducer }), // Add reducer on store
     StoreDevtoolsModule.instrument({
-      maxAge: 25, // Mantém o histórico das últimas 25 ações
-      logOnly: environment.production, // Em produção logar apenas ações
+      maxAge: 25, // keep history of 25 states last states
+      logOnly: environment.production, // Restrict extension to log-only mode in production
     }),
   ],
   providers: [],
