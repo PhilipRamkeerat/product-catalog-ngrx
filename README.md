@@ -2,6 +2,8 @@
 
 This is a simple product catalog built using **Angular** and **NgRX** for state management. It demonstrates how to manage a list of products using NgRX, including adding, removing, and listing products. Additionally, it utilizes **Bulma CSS** for styling.
 
+![Alt text](src/assets/images/product_catalog.png)
+
 ## Features
 
 - **NgRX Store** for state management
